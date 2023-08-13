@@ -1,0 +1,5 @@
+@use 'mixins';
+
+.wrapper {
+  @include mixins.wrapper-desktop;
+}

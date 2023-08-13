@@ -1,0 +1,50 @@
+.form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form__input {
+  width: 100%;
+  background-color: var(--black);
+  border: .1rem solid rgba(var(--white), .4);
+  border-radius: 2rem;
+  padding: 2rem;
+  &_description {
+    resize: none;
+  }
+  &_content {
+    resize: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+.form__mainInput {
+  width: 100%;
+  background-color: var(--black);
+  font-size: 4rem;
+  font-weight: 900;
+  border: 0;
+  border-bottom: .1rem solid rgba(var(--white), .4);
+  padding-bottom: .4rem;
+  margin-bottom: 2rem;
+
+  &:focus, &:focus-visible {
+    border-bottom-color: var(--white);
+    outline: none;
+  }
+}
+
+.form__submit {
+  cursor: pointer;
+  margin-left: auto;
+  padding: 1rem 2rem;
+  border-radius: 100000rem;
+  border: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  background-color: var(--blue);
+}

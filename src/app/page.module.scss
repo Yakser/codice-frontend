@@ -1,0 +1,14 @@
+@use "../scss/utils/mixins";
+
+.main {
+  &__wrapper {
+    @include mixins.wrapper-desktop;
+
+  }
+
+  &__title {
+    font-size: 5rem;
+    font-weight: 900;
+    text-align: center;
+  }
+}
