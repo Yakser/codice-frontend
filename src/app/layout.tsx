@@ -2,6 +2,7 @@ import '../scss/style.scss';
 
 import type {Metadata} from 'next'
 import {Inter} from 'next/font/google'
+import styles from "@/app/page.module.scss";
 
 const inter = Inter({subsets: ['latin', 'cyrillic']})
 
@@ -17,7 +18,13 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+        <main className={styles.main}>
+            <div className={styles.main__wrapper}>
+                {children}
+            </div>
+        </main>
+        </body>
         </html>
     )
 }

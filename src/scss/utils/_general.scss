@@ -51,10 +51,14 @@ a {
   color: colors.get(blue);
 }
 
+code {
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.5;
+}
+
 
 ::selection {
-  color: colors.get(white);
-  background-color: colors.get(blue);
+  background-color: colors.get(blue, .5);
 }
 
 
