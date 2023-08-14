@@ -12,7 +12,7 @@ const CopyButton: React.FC<CopyButtonProps> = ({textToCopy, className}) => {
         await navigator.clipboard.writeText(textToCopy);
     }
     return (
-        <button onClick={copyToClipBoard} className={`${className} ${styles.copyButton}`}>
+        <button onClick={copyToClipBoard} className={`${className} ${styles.copyButton}`} title={'Copy to clipboard'}>
             <svg height="16" viewBox="0 0 16 16" version="1.1" width="16">
                 <path
                     fill="currentColor"

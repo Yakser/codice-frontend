@@ -8,7 +8,6 @@ import styles from './index.module.scss';
 import axios, {AxiosError} from "axios";
 
 
-
 type FormInputs = {
     title: string,
     content: string,
@@ -71,12 +70,16 @@ const PasteForm = () => {
         <form
             className={styles.form}
             onSubmit={handleSubmit(onSubmit)}>
-            <input
-                className={styles.form__mainInput}
-                type={'text'}
-                {...register('title', {})}
-                placeholder={'Title'}
-            />
+            <label
+                className={styles.form__label}
+            >
+                <input
+                    className={styles.form__mainInput}
+                    type={'text'}
+                    {...register('title', {})}
+                    placeholder={'Title'}
+                />
+            </label>
             <textarea
                 className={`${styles.form__input} ${styles.form__input_content}`}
                 cols={30}
