@@ -1,4 +1,6 @@
 @use "mixins";
+@use "colors";
+
 *,
 *::before,
 *::after {
@@ -7,10 +9,12 @@
 }
 
 :root {
-  --white: 255, 255, 255;
-  --black: #000;
-  --blue: #3a6bdc;
+  @each $key, $value in colors.$colors {
+    --color-#{$key} : #{$value};
+    --color-#{$key}--rgb: #{colors.HexToRGB($value)};
+  }
 }
+
 
 html {
   font-size: 50%;
@@ -33,8 +37,8 @@ body {
   font-optical-sizing: auto;
 
   scroll-behavior: smooth;
-  background-color: var(--black);
-  color: var(--white);
+  background-color: colors.get(black);
+  color: colors.get(white);
 }
 
 
@@ -44,14 +48,13 @@ main {
 }
 
 a {
-  color: var(--white);
+  color: colors.get(blue);
 }
 
 
-
 ::selection {
-  color: var(--white);
-  background-color: var(--blue);
+  color: colors.get(white);
+  background-color: colors.get(blue);
 }
 
 

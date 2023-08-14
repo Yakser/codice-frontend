@@ -1,3 +1,5 @@
+@use "../../../scss/utils/colors";
+
 .form {
   width: 100%;
   display: flex;
@@ -9,31 +11,48 @@
 
 .form__input {
   width: 100%;
-  background-color: var(--black);
-  border: .1rem solid rgba(var(--white), .4);
+  background-color: colors.get(black);
   border-radius: 2rem;
   padding: 2rem;
+
+  border: .3rem solid transparent;
+  box-shadow: 0 0 0 .1rem colors.get(white, .5);
+  transition: .2s cubic-bezier(0, 0, .5, 1);
+
+  &:hover {
+    box-shadow: 0 0 0 .3rem colors.get(white, .5);
+  }
+
+  &:focus, &:focus-visible {
+    box-shadow: 0 0 0 .3rem colors.get(blue, .5);
+    outline: none;
+  }
+
+
+
   &_description {
     resize: none;
   }
+
   &_content {
     resize: none;
     font-family: 'JetBrains Mono', monospace;
   }
+
 }
 
 .form__mainInput {
   width: 100%;
-  background-color: var(--black);
+  background-color: colors.get(black);
   font-size: 4rem;
   font-weight: 900;
   border: 0;
-  border-bottom: .1rem solid rgba(var(--white), .4);
+  border-bottom: .1rem solid colors.get(gray);
   padding-bottom: .4rem;
   margin-bottom: 2rem;
 
   &:focus, &:focus-visible {
-    border-bottom-color: var(--white);
+    border-bottom-color: colors.get(gray);
     outline: none;
   }
 }
@@ -42,9 +61,28 @@
   cursor: pointer;
   margin-left: auto;
   padding: 1rem 2rem;
+
   border-radius: 100000rem;
-  border: 0;
+
   font-size: 2rem;
   font-weight: 600;
-  background-color: var(--blue);
+
+  background-color: colors.get(blue);
+
+  border: .3rem solid transparent;
+  box-shadow: 0 0 transparent;
+  transition: .3s cubic-bezier(0, 0, .5, 1);
+
+  &:hover,
+  &:focus, &:focus-visible {
+    box-shadow: 0 0 0 .5rem colors.get(blue, .5);
+    outline: none;
+  }
+
+  &:active {
+    box-shadow: 0 0 0 .0rem colors.get(red, .5);
+    background-color: colors.get(red);
+  }
 }
+
+

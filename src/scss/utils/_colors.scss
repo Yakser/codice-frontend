@@ -1,0 +1,21 @@
+@use "sass:string";
+
+$colors: (
+        "blue" : #3a6bdc,
+        "gray" : #939394,
+        "white" : #fff,
+        "black" : #000,
+        "red" : #BB2649,
+);
+
+@function HexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+
+@function get($name, $opacity: false) {
+  @if $opacity {
+    @return rgba(var(--color-#{$name}--rgb), $opacity);
+  } @else {
+    @return var(--color-#{$name});
+  }
+}

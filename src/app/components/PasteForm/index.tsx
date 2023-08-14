@@ -1,24 +1,36 @@
 "use client"
 
-import React from 'react';
-import {useForm} from 'react-hook-form';
+import React, {useEffect} from 'react';
+import {useRouter} from 'next/navigation'
+
+import {FieldValues, useForm} from 'react-hook-form';
 import styles from './index.module.scss';
 import axios from "axios";
 
 const PasteForm = () => {
+    const router = useRouter();
     const {
         register,
         handleSubmit,
-        formState: {errors},
+        reset,
+        formState,
+        formState: {isSubmitSuccessful, errors},
     } = useForm();
 
-    const onSubmit = (data) => {
-        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/`).then(
-            (response) => {
-                console.log(response);
-            }
-        )
+    const onSubmit = async (data: FieldValues) => {
+        if (data?.slug?.length === 0) {
+            data.slug = null;
+        }
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/pastes/`, data);
+        console.log(response);
     }
+
+    useEffect(() => {
+        if (formState.isSubmitSuccessful) {
+            reset();
+            // router.push('/dashboard', { scroll: false })
+        }
+    }, [formState, reset]);
 
     return (
         <form
@@ -32,14 +44,14 @@ const PasteForm = () => {
             />
             <textarea
                 className={`${styles.form__input} ${styles.form__input_content}`}
-                cols="30"
-                rows="15"
+                cols={30}
+                rows={15}
                 {...register('content')}
                 placeholder={'Content'}
             />
             <textarea
-                cols="30"
-                rows="3"
+                cols={30}
+                rows={3}
                 className={`${styles.form__input} ${styles.form__input_description}`}
                 {...register('description')}
                 placeholder={'Description (optional)'}

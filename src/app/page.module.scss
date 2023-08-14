@@ -1,9 +1,10 @@
 @use "../scss/utils/mixins";
 
 .main {
+  padding: 2rem;
+
   &__wrapper {
     @include mixins.wrapper-desktop;
-
   }
 
   &__title {
