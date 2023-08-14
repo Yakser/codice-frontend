@@ -1,0 +1,30 @@
+@use "../../../scss/utils/colors";
+
+.copyButton {
+  background-color: colors.get(blue, 1);
+  padding: .5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: .5rem;
+  border: .3rem solid transparent;
+  box-shadow: 0 0 transparent;
+  transition: .2s cubic-bezier(0, 0, .5, 1);
+
+  &:hover,
+  &:focus, &:focus-visible {
+    box-shadow: 0 0 0 .3rem colors.get(blue, .5);
+    outline: none;
+  }
+
+  &:active {
+    box-shadow: 0 0 0 2rem colors.get(blue, 0);
+  }
+
+  &:disabled {
+    opacity: .4;
+    background-color: colors.get(red);
+    pointer-events: none;
+  }
+}
