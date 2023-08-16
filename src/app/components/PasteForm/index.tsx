@@ -23,6 +23,10 @@ type ErrorResponse = {
 
 const LANGUAGES: OptionType[] = [
     {
+        title: "Auto",
+        value: "Auto",
+    },
+    {
         title: "Python",
         value: "python",
     },
