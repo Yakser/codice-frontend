@@ -1,0 +1,17 @@
+@use "../../../../scss/utils/colors";
+
+.option {
+  cursor: pointer;
+  transition-property: background-color;
+  border: .3rem solid transparent;
+  box-shadow: 0 0 transparent;
+  transition: .3s cubic-bezier(0, 0, .5, 1);
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  &:hover,
+  &:focus, &:focus-visible {
+    box-shadow: 0 0 0 .3rem colors.get(blue, 1);
+    outline: none;
+    background-color: colors.get(blue, 1);
+  }
+}

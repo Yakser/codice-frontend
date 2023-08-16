@@ -6,6 +6,8 @@ import {useRouter} from 'next/navigation'
 import {FieldValues, useForm} from 'react-hook-form';
 import styles from './index.module.scss';
 import axios, {AxiosError} from "axios";
+import Select from "@/app/components/Select";
+import {Option as OptionType} from "@/app/components/Select/Option";
 
 
 type FormInputs = {
@@ -19,9 +21,32 @@ type ErrorResponse = {
     detail: string;
 }
 
+const LANGUAGES: OptionType[] = [
+    {
+        title: "Python",
+        value: "python",
+    },
+    {
+        title: "Javascript",
+        value: "javascript",
+    },
+    {
+        title: "Markdown",
+        value: "md",
+    },
+    {
+        title: "C/C++",
+        value: "C/C++",
+    },
+];
+
 const PasteForm = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [slug, setSlug] = useState<string>("");
+
+    const [selectedLanguageValue, setSelectedLanguageValue] = useState("");
+    const selectedLanguageTitle = LANGUAGES.find(item => item.value === selectedLanguageValue);
+
 
     const router = useRouter();
     const {
@@ -39,6 +64,7 @@ const PasteForm = () => {
         }
         try {
             setIsLoading(true);
+            data['language'] = selectedLanguageValue;
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/pastes/`, data);
             const slug = response.data.slug;
             setSlug(slug);
@@ -59,17 +85,22 @@ const PasteForm = () => {
         }
 
     }
+
+    const onSelectChange = (value: string) => {
+        setSelectedLanguageValue(value);
+    }
+
     useEffect(() => {
         if (formState.isSubmitSuccessful) {
-            reset();
-            router.push(`/${slug}`, {scroll: false})
+            router.push(`/${slug}`, {scroll: false});
         }
     }, [formState, reset]);
 
     return (
         <form
             className={styles.form}
-            onSubmit={handleSubmit(onSubmit)}>
+            onSubmit={handleSubmit(onSubmit)}
+        >
             <label
                 className={styles.form__label}
             >
@@ -95,6 +126,11 @@ const PasteForm = () => {
                     Content can't be empty
                 </p>
             )}
+            <Select selected={selectedLanguageTitle || null}
+                    options={LANGUAGES}
+                    onChange={onSelectChange}
+                    placeholder={'Select language'}
+            />
             <textarea
                 cols={30}
                 rows={3}
@@ -141,6 +177,7 @@ const PasteForm = () => {
                     {errors.root.message}
                 </p>
             )}
+
             <button
                 className={styles.form__submit}
                 type={'submit'}

@@ -12,6 +12,7 @@ type PasteDetail = {
     author: string | null;
     content: string;
     slug: string;
+    language: string | null;
 }
 
 const getPaste = async (slug: string): Promise<PasteDetail> => {
@@ -34,6 +35,7 @@ const Paste = async ({params}: { params: { slug: string } }) => {
                                     className={styles.paste__copy}
                                 />
                                 <SyntaxHighlighter
+                                    language={paste.language || ""}
                                     style={theme}
                                     customStyle={{
                                         backgroundColor: "transparent",

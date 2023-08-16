@@ -1,0 +1,53 @@
+@use "../../../scss/utils/colors";
+@use "../../../scss/utils/mixins";
+
+.select {
+  position: relative;
+  width: 100%;
+}
+
+.select__list {
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  background-color: colors.get(blue, .2);
+  backdrop-filter: blur(1rem) saturate(180%);
+  margin-top: 1rem;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  padding: 1rem .5rem;
+  //padding: 2rem;
+  //max-height: 20rem;
+  //overflow-y: auto;
+}
+
+
+.select__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 100000px;
+  cursor: pointer;
+  background-color: colors.get(blue, .2);
+  backdrop-filter: blur(1rem) saturate(180%);
+
+  border: .3rem solid transparent;
+  box-shadow: 0 0 transparent;
+  transition: .3s cubic-bezier(0, 0, .5, 1);
+  color: colors.get(white, .5);
+
+  &:hover,
+  &:focus, &:focus-visible {
+    box-shadow: 0 0 0 .3rem colors.get(blue, 1);
+    outline: none;
+  }
+
+  &_selected {
+    color: colors.get(white);
+  }
+
+}
