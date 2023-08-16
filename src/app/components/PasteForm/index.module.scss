@@ -14,7 +14,7 @@
 
   &:has(.form__mainInput) {
     position: relative;
-    margin-bottom: 2rem;
+    //margin-bottom: 2rem;
     border-bottom: .3rem solid transparent;
 
     &::after {
@@ -72,6 +72,7 @@
   &_content {
     resize: none;
     font-family: 'JetBrains Mono', monospace;
+    margin-top: 2rem;
   }
 
 }
@@ -134,3 +135,9 @@
   color: colors.get(red)
 }
 
+
+.form__select {
+  max-width: 20rem;
+  width: 100%;
+  margin-right: auto;
+}

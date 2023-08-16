@@ -36,7 +36,7 @@ const LANGUAGES: OptionType[] = [
     },
     {
         title: "C/C++",
-        value: "C/C++",
+        value: "c++",
     },
 ];
 
@@ -94,7 +94,7 @@ const PasteForm = () => {
         if (formState.isSubmitSuccessful) {
             router.push(`/${slug}`, {scroll: false});
         }
-    }, [formState, reset]);
+    }, [formState, reset, router, slug]);
 
     return (
         <form
@@ -107,10 +107,17 @@ const PasteForm = () => {
                 <input
                     className={styles.form__mainInput}
                     type={'text'}
-                    {...register('title', {})}
+                    {...register('title', {
+                        maxLength: 200,
+                    })}
                     placeholder={'Title'}
                 />
             </label>
+            {errors.title?.type === "maxLength" && (
+                <p className={styles.form__error}>
+                    Title length must be less than 200
+                </p>
+            )}
             <textarea
                 className={`${styles.form__input} ${styles.form__input_content}`}
                 cols={30}
@@ -126,11 +133,13 @@ const PasteForm = () => {
                     Content can't be empty
                 </p>
             )}
-            <Select selected={selectedLanguageTitle || null}
-                    options={LANGUAGES}
-                    onChange={onSelectChange}
-                    placeholder={'Select language'}
-            />
+            <div className={styles.form__select}>
+                <Select selected={selectedLanguageTitle || null}
+                        options={LANGUAGES}
+                        onChange={onSelectChange}
+                        placeholder={'Select language'}
+                />
+            </div>
             <textarea
                 cols={30}
                 rows={3}
