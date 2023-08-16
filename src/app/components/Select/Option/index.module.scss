@@ -8,6 +8,7 @@
   transition: .3s cubic-bezier(0, 0, .5, 1);
   border-radius: 1rem;
   padding: 1rem 2rem;
+
   &:hover,
   &:focus, &:focus-visible {
     box-shadow: 0 0 0 .3rem colors.get(blue, 1);

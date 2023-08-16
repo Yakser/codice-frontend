@@ -6,22 +6,6 @@
   width: 100%;
 }
 
-.select__list {
-  position: absolute;
-  width: 100%;
-  z-index: 100;
-  background-color: colors.get(blue, .2);
-  backdrop-filter: blur(1rem) saturate(180%);
-  margin-top: 1rem;
-  border-radius: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: .9rem;
-  padding: 1rem .5rem;
-  //padding: 2rem;
-  //max-height: 20rem;
-  //overflow-y: auto;
-}
 
 
 .select__placeholder {
@@ -32,15 +16,20 @@
   padding: 1rem 2rem;
   border-radius: 100000px;
   cursor: pointer;
-  background-color: colors.get(blue, .2);
-  backdrop-filter: blur(1rem) saturate(180%);
 
-  border: .3rem solid transparent;
-  box-shadow: 0 0 transparent;
-  transition: .3s cubic-bezier(0, 0, .5, 1);
+  background-color: colors.get(black);
+
   color: colors.get(white, .5);
 
-  &:hover,
+  border: .3rem solid transparent;
+  box-shadow: 0 0 0 .1rem colors.get(white, .5);
+  transition: .2s cubic-bezier(0, 0, .5, 1);
+  transition-property: box-shadow;
+
+  &:hover {
+    box-shadow: 0 0 0 .3rem colors.get(white, .5);
+  }
+
   &:focus, &:focus-visible {
     box-shadow: 0 0 0 .3rem colors.get(blue, 1);
     outline: none;
@@ -49,5 +38,21 @@
   &_selected {
     color: colors.get(white);
   }
+}
 
+.select__list {
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  background-color: colors.get(blue, .1);
+  backdrop-filter: blur(1rem) saturate(180%);
+  margin-top: 1rem;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  padding: 1rem .5rem;
+  //padding: 2rem;
+  //max-height: 20rem;
+  //overflow-y: auto;
 }
