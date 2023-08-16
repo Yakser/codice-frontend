@@ -1,12 +1,12 @@
 "use client";
 
-import React, {RefObject, useEffect, useRef, useState} from 'react';
-import styles from './index.module.scss';
+import React, {useEffect, useRef, useState} from "react";
+import styles from "./index.module.scss";
 import Option, {Option as OptionType} from "@/app/components/Select/Option";
 
 
-export type SelectMode = 'rows' | 'cells';
-export type SelectStatus = 'default' | 'invalid';
+export type SelectMode = "rows" | "cells";
+export type SelectStatus = "default" | "invalid";
 
 export type SelectProps = {
     selected: OptionType | null;
@@ -14,7 +14,7 @@ export type SelectProps = {
     placeholder?: string;
     mode?: SelectMode;
     status?: SelectStatus;
-    onChange?: (selected: OptionType['value']) => void;
+    onChange?: (selected: OptionType["value"]) => void;
     onClose?: () => void;
 };
 
@@ -26,7 +26,7 @@ const Select: React.FC<SelectProps> = ({selected, mode, onChange, options, statu
         setIsOpened(prev => !prev);
     };
 
-    const onOptionClick = (value: OptionType['value']) => {
+    const onOptionClick = (value: OptionType["value"]) => {
         setIsOpened(false);
         placeholderRef?.current?.focus();
         onChange?.(value);
@@ -43,13 +43,13 @@ const Select: React.FC<SelectProps> = ({selected, mode, onChange, options, statu
                 setIsOpened(false);
             }
         }
-        window.addEventListener('click', onClick);
+        window.addEventListener("click", onClick);
 
         return () => {
-            window.removeEventListener('click', onClick);
+            window.removeEventListener("click", onClick);
 
         }
-    }, []);
+    }, [isOpened, onClose]);
 
     useEffect(() => {
         const placeholderElement = placeholderRef.current;
@@ -63,10 +63,10 @@ const Select: React.FC<SelectProps> = ({selected, mode, onChange, options, statu
             }
         }
 
-        placeholderElement.addEventListener('keydown', onKeydown);
+        placeholderElement.addEventListener("keydown", onKeydown);
 
         return () => {
-            placeholderElement.removeEventListener('keydown', onKeydown);
+            placeholderElement.removeEventListener("keydown", onKeydown);
         }
 
     }, []);
@@ -80,7 +80,7 @@ const Select: React.FC<SelectProps> = ({selected, mode, onChange, options, statu
                         ${selected?.title ? styles.select__placeholder_selected : ""}
                         ${status === "invalid" ? styles.select__placeholder_invalid : ""
             }`}
-                 role={'button'}
+                 role={"button"}
                  tabIndex={0}
                  onClick={onPlaceholderClick}
                  ref={placeholderRef}

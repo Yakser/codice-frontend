@@ -1,10 +1,10 @@
 "use client"
 
-import React, {useEffect, useState} from 'react';
-import {useRouter} from 'next/navigation'
+import React, {useEffect, useState} from "react";
+import {useRouter} from "next/navigation"
 
-import {FieldValues, useForm} from 'react-hook-form';
-import styles from './index.module.scss';
+import {FieldValues, useForm} from "react-hook-form";
+import styles from "./index.module.scss";
 import axios, {AxiosError} from "axios";
 import Select from "@/app/components/Select";
 import {Option as OptionType} from "@/app/components/Select/Option";
@@ -64,7 +64,7 @@ const PasteForm = () => {
         }
         try {
             setIsLoading(true);
-            data['language'] = selectedLanguageValue;
+            data["language"] = selectedLanguageValue;
             const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/pastes/`, data);
             const slug = response.data.slug;
             setSlug(slug);
@@ -106,11 +106,11 @@ const PasteForm = () => {
             >
                 <input
                     className={styles.form__mainInput}
-                    type={'text'}
-                    {...register('title', {
+                    type={"text"}
+                    {...register("title", {
                         maxLength: 200,
                     })}
-                    placeholder={'Title'}
+                    placeholder={"Title"}
                 />
             </label>
             {errors.title?.type === "maxLength" && (
@@ -122,33 +122,33 @@ const PasteForm = () => {
                 className={`${styles.form__input} ${styles.form__input_content}`}
                 cols={30}
                 rows={15}
-                {...register('content', {
+                {...register("content", {
                         required: true,
                     }
                 )}
-                placeholder={'Content'}
+                placeholder={"Content"}
             />
             {errors.content?.type === "required" && (
                 <p className={styles.form__error}>
-                    Content can't be empty
+                    Content can&#39;t be empty
                 </p>
             )}
             <div className={styles.form__select}>
                 <Select selected={selectedLanguageTitle || null}
                         options={LANGUAGES}
                         onChange={onSelectChange}
-                        placeholder={'Select language'}
+                        placeholder={"Select language"}
                 />
             </div>
             <textarea
                 cols={30}
                 rows={3}
                 className={`${styles.form__input} ${styles.form__input_description}`}
-                {...register('description',
+                {...register("description",
                     {
                         maxLength: 500
                     })}
-                placeholder={'Description (optional)'}
+                placeholder={"Description (optional)"}
             />
             {errors.description?.type === "maxLength" && (
                 <p className={styles.form__error}>
@@ -157,18 +157,18 @@ const PasteForm = () => {
             )}
             <input
                 className={styles.form__input}
-                type={'text'}
-                {...register('slug',
+                type={"text"}
+                {...register("slug",
                     {
                         pattern: /^[-\w]+$/i,
                         maxLength: 255,
                     }
                 )}
-                placeholder={'Custom slug (optional)'}
+                placeholder={"Custom slug (optional)"}
             />
             {errors.slug?.type === "pattern" && (
                 <p className={styles.form__error}>
-                    Slug field must contain only letters, digits, or '_'
+                    Slug field must contain only letters, digits, or &#39;_&#39;
                 </p>
             )}
             {errors.slug?.type === "maxLength" && (
@@ -189,7 +189,7 @@ const PasteForm = () => {
 
             <button
                 className={styles.form__submit}
-                type={'submit'}
+                type={"submit"}
                 disabled={isLoading}
             >
                 {isLoading ? "Creating..." : "Create"}
