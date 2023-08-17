@@ -46,7 +46,7 @@
 
 .form__input {
   width: 100%;
-  background-color: colors.get(black);
+  background-color: transparent;
   border-radius: 2rem;
   padding: 2rem;
 
@@ -73,13 +73,14 @@
     resize: none;
     font-family: 'JetBrains Mono', monospace;
     margin-top: 2rem;
+    background-color: colors.get(black, .7);
   }
 
 }
 
 .form__mainInput {
   width: 100%;
-  background-color: colors.get(black);
+  background-color: transparent;
   font-size: 4rem;
   font-weight: 900;
   border: 0;

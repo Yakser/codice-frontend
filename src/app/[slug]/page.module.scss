@@ -22,6 +22,7 @@
   border: .1rem solid colors.get(blue);
   border-radius: 2rem;
   word-break: break-word;
+  background-color: colors.get(black, .7);
 }
 
 .paste__copy {
