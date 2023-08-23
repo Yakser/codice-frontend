@@ -8,8 +8,14 @@ import styles from "./index.module.scss";
 import axios, {AxiosError} from "axios";
 import Select from "@/app/components/Select";
 import {Option as OptionType} from "@/app/components/Select/Option";
+import {JetBrains_Mono} from "next/font/google";
 
-
+const jetbrains_mono = JetBrains_Mono(
+    {
+        subsets: ['latin', 'cyrillic'],
+        display: 'swap',
+    }
+)
 type FormInputs = {
     title: string,
     content: string,
@@ -123,7 +129,7 @@ const PasteForm = () => {
                 </p>
             )}
             <textarea
-                className={`${styles.form__input} ${styles.form__input_content}`}
+                className={`${styles.form__input} ${styles.form__input_content} ${jetbrains_mono.className}`}
                 cols={30}
                 rows={15}
                 {...register("content", {

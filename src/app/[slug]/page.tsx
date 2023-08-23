@@ -5,12 +5,13 @@ import theme from "@/app/[slug]/theme";
 import CopyButton from "@/app/components/CopyButton";
 import Link from "next/link";
 import {Metadata, ResolvingMetadata} from 'next'
+import Paste from "@/app/[slug]/Paste";
 
 type PasteProps = {
     params: { slug: string };
 }
 
-type PasteDetail = {
+export type PasteDetail = {
     id: number;
     title: string | null;
     description: string | null;
@@ -59,38 +60,14 @@ export async function generateMetadata(
 
 }
 
-const Paste: React.FC<PasteProps> = async ({params}: { params: { slug: string } }) => {
+const Page: React.FC<PasteProps> = async ({params}: { params: { slug: string } }) => {
     try {
         const response = await getPaste(params.slug);
         if (response.ok) {
             const paste = await response.json() as PasteDetail;
 
             return (
-                <article className={styles.paste}>
-                    <h2 className={styles.paste__title}>{paste.title}</h2>
-                    <div className={styles.paste__content}>
-                        <CopyButton
-                            textToCopy={paste.content}
-                            className={styles.paste__copy}
-                        />
-                        <SyntaxHighlighter
-                            language={paste.language || ""}
-                            style={theme}
-                            customStyle={{
-                                backgroundColor: "transparent",
-                                padding: "2rem",
-                                fontFamily: "JetBrains Mono",
-                            }}
-                            showLineNumbers={true}
-                        >
-                            {paste.content}
-                        </SyntaxHighlighter>
-                    </div>
-                    <p className={styles.paste__description}>{paste.description}</p>
-                    <Link href={'/'} className={styles.paste__link}>
-                        Create another paste
-                    </Link>
-                </article>
+                <Paste paste={paste}/>
             )
         }
         return (
@@ -103,4 +80,4 @@ const Paste: React.FC<PasteProps> = async ({params}: { params: { slug: string } 
     }
 };
 
-export default Paste;
+export default Page;

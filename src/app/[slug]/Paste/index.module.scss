@@ -1,0 +1,107 @@
+@use "../../../scss/utils/mixins";
+@use "../../../scss/utils/colors";
+
+.paste {
+
+}
+
+.paste__title {
+  font-size: 5rem;
+  margin-bottom: 2rem;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+.paste__description {
+  font-size: 2rem;
+  margin-top: 3rem;
+  word-break: break-word;
+}
+
+.paste__content {
+  position: relative;
+  border: .1rem solid colors.get(blue);
+  border-radius: 2rem;
+  word-break: break-word;
+  background-color: colors.get(black, .7);
+}
+
+.paste__content_markdown {
+  padding: 2rem;
+  a {
+    display: inline-block;
+  }
+  ol, ul {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 40px;
+  }
+  table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    tbody tr td {
+      padding: 8px;
+      line-height: 1.42857143;
+      vertical-align: top;
+      border-top: 1px solid #ddd;
+    }
+  }
+  img {
+    max-width: 100%;
+  }
+  hr {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: 0;
+    border-top: .1rem solid #eee;
+  }
+}
+
+.paste__copy {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.paste__link {
+  display: inline-block;
+  margin-top: 5rem;
+  color: colors.get(white);
+  cursor: pointer;
+  margin-left: auto;
+  padding: 1rem 2rem;
+  user-select: none;
+  text-decoration: none;
+  border-radius: 100000rem;
+
+  font-size: 2rem;
+  font-weight: 600;
+
+  // todo: mixin for animated box-shadow
+  background-color: colors.get(blue);
+
+  border: .3rem solid transparent;
+  box-shadow: 0 0 transparent;
+  transition: .3s cubic-bezier(0, 0, .5, 1);
+
+  &:hover,
+  &:focus, &:focus-visible {
+    box-shadow: 0 0 0 .5rem colors.get(blue, .5);
+    outline: none;
+  }
+
+  &:active {
+    box-shadow: 0 0 0 .0rem colors.get(red, .5);
+    background-color: colors.get(red);
+  }
+
+  &:disabled {
+    opacity: .4;
+    background-color: colors.get(blue);
+    pointer-events: none;
+  }
+}
